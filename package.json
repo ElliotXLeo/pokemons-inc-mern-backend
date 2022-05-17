@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ElliotXLeo/pokemon-inc-mern-backend/issues"
   },
-  "homepage": "https://github.com/ElliotXLeo/pokemon-inc-mern-backend#readme"
+  "homepage": "https://github.com/ElliotXLeo/pokemon-inc-mern-backend#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
