@@ -1,6 +1,7 @@
 import express from 'express';
+import pokemonRouter from './routes/pokemon.routes.js';
 
 const app = express();
 app.listen(2050);
 
-console.log('ElliotXLeo');
+app.use('/api', pokemonRouter);
