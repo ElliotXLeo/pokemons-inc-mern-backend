@@ -1,25 +1,16 @@
 import { Router } from "express";
+import { createPokemon, deletePokemon, readPokemon, readPokemons, updatePokemon } from "../controllers/pokemon.controller.js";
 
 const pokemonRouter = Router();
 
-pokemonRouter.post('/pokemons', (req, res) => {
-  res.send('Create Pokémons');
-});
+pokemonRouter.post('/pokemons', createPokemon);
 
-pokemonRouter.get('/pokemons', (req, res) => {
-  res.send('Read Pokémons');
-});
+pokemonRouter.get('/pokemons', readPokemons);
 
-pokemonRouter.get('/pokemons/:id', (req, res) => {
-  res.send('Read Pokémon');
-});
+pokemonRouter.get('/pokemons/:id', readPokemon);
 
-pokemonRouter.put('/pokemons/:id', (req, res) => {
-  res.send('Update Pokémon');
-});
+pokemonRouter.put('/pokemons/:id', updatePokemon);
 
-pokemonRouter.delete('/pokemons/:id', (req, res) => {
-  res.send('Delete Pokémon');
-});
+pokemonRouter.delete('/pokemons/:id', deletePokemon);
 
 export default pokemonRouter;
