@@ -62,5 +62,21 @@ export const updatePokemon = async (req, res) => {
 };
 
 export const deletePokemon = async (req, res) => {
-  res.send('Delete Pokémons');
+  try {
+    const { id } = req.params;
+    const pokemon = await Pokemon.findById(id);
+    if (pokemon === null) {
+      const error = new Error('Datos incorrectos');
+      return res.status(404).json({
+        message: error.message
+      });
+    } else {
+      await pokemon.deleteOne();
+      return res.status(200).json({
+        message: 'Pokemon eliminado'
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 };
