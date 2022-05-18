@@ -20,7 +20,20 @@ export const readPokemons = async (req, res) => {
 };
 
 export const readPokemon = async (req, res) => {
-  res.send('Read Pokémon');
+  try {
+    const { id } = req.params;
+    const pokemon = await Pokemon.findById(id);
+    if (pokemon === null) {
+      const error = new Error('Datos incorrectos');
+      return res.status(404).json({
+        message: error.message
+      });
+    } else {
+      return res.status(200).json(pokemon);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const updatePokemon = async (req, res) => {
