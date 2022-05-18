@@ -3,8 +3,8 @@ import Pokemon from "../models/Pokemon.js";
 export const createPokemon = async (req, res) => {
   try {
     const pokemon = new Pokemon(req.body);
-    const savedPokemon = await pokemon.save();
-    res.json(savedPokemon);
+    const createdPokemon = await pokemon.save();
+    res.json(createdPokemon);
   } catch (error) {
     console.log(error.message);
   }
@@ -37,7 +37,28 @@ export const readPokemon = async (req, res) => {
 };
 
 export const updatePokemon = async (req, res) => {
-  res.send('Update Pokémons');
+  try {
+    const { id } = req.params;
+    const pokemon = await Pokemon.findById(id);
+    if (pokemon === null) {
+      const error = new Error('Datos incorrectos');
+      return res.status(404).json({
+        message: error.message
+      });
+    } else {
+      const { name, type, hp, attack, special, image } = req.body;
+      pokemon.name = name || pokemon.name;
+      pokemon.type = type || pokemon.type;
+      pokemon.hp = hp || pokemon.hp;
+      pokemon.attack = attack || pokemon.attack;
+      pokemon.special = special || pokemon.special;
+      pokemon.image = image || pokemon.image;
+      const updatedPokemon = await pokemon.save();
+      return res.status(200).json(updatedPokemon);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const deletePokemon = async (req, res) => {
