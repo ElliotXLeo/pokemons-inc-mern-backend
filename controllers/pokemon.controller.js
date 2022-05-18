@@ -6,7 +6,9 @@ export const createPokemon = async (req, res) => {
     const createdPokemon = await pokemon.save();
     res.status(201).json(createdPokemon);
   } catch (error) {
-    console.log(error.message);
+    return res.status(400).json({
+      message: error.message
+    });
   }
 };
 
@@ -15,7 +17,9 @@ export const readPokemons = async (req, res) => {
     const pokemons = await Pokemon.find();
     res.json(pokemons);
   } catch (error) {
-    console.log(error.message);
+    return res.status(400).json({
+      message: error.message
+    });
   }
 };
 
@@ -32,7 +36,9 @@ export const readPokemon = async (req, res) => {
       return res.status(200).json(pokemon);
     }
   } catch (error) {
-    console.log(error.message);
+    return res.status(400).json({
+      message: error.message
+    });
   }
 };
 
@@ -57,7 +63,9 @@ export const updatePokemon = async (req, res) => {
       return res.status(200).json(updatedPokemon);
     }
   } catch (error) {
-    console.log(error.message);
+    return res.status(400).json({
+      message: error.message
+    });
   }
 };
 
@@ -77,6 +85,8 @@ export const deletePokemon = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    return res.status(400).json({
+      message: error.message
+    });
   }
 };
