@@ -4,7 +4,7 @@ export const createPokemon = async (req, res) => {
   try {
     const pokemon = new Pokemon(req.body);
     const createdPokemon = await pokemon.save();
-    res.json(createdPokemon);
+    res.status(201).json(createdPokemon);
   } catch (error) {
     console.log(error.message);
   }
