@@ -11,7 +11,12 @@ export const createPokemon = async (req, res) => {
 };
 
 export const readPokemons = async (req, res) => {
-  res.send('Read Pokémons');
+  try {
+    const pokemons = await Pokemon.find();
+    res.json(pokemons);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const readPokemon = async (req, res) => {
