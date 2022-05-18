@@ -1,5 +1,13 @@
+import Pokemon from "../models/Pokemon.js";
+
 export const createPokemon = async (req, res) => {
-  res.send('Create Pokémons');
+  try {
+    const pokemon = new Pokemon(req.body);
+    const savedPokemon = await pokemon.save();
+    res.json(savedPokemon);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const readPokemons = async (req, res) => {
