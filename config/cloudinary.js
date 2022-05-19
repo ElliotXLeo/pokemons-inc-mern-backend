@@ -16,3 +16,7 @@ export const uploadFile = async (filePath) => {
     console.log(error.message);
   }
 };
+
+export const deleteFile = async (id) => {
+  return await cloudinary.uploader.destroy(id);
+};

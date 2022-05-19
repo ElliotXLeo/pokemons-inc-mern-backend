@@ -1,4 +1,4 @@
-import { uploadFile } from "../config/cloudinary.js";
+import { deleteFile, uploadFile } from "../config/cloudinary.js";
 import fs from 'fs-extra';
 import Pokemon from "../models/Pokemon.js";
 
@@ -97,6 +97,10 @@ export const deletePokemon = async (req, res) => {
         message: error.message
       });
     } else {
+      if (isNaN(+pokemon.image.publicId)) {
+        const response = await deleteFile(pokemon.image.publicId);
+        console.log(response);
+      }
       await pokemon.deleteOne();
       return res.status(200).json({
         message: 'Pokemon eliminado'
