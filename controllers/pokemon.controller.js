@@ -33,7 +33,7 @@ export const createPokemon = async (req, res) => {
 export const readPokemons = async (req, res) => {
   try {
     const pokemons = await Pokemon.find();
-    res.json(pokemons);
+    return res.status(200).json(pokemons);
   } catch (error) {
     return res.status(400).json({
       message: error.message
