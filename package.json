@@ -1,7 +1,7 @@
 {
   "name": "pokemon-inc-mern",
   "version": "0.0.1",
-  "description": "Aplicación de Administrador de Pokémon’s.",
+  "description": "Administrador de Pokémon’s.",
   "type": "module",
   "main": "index.js",
   "scripts": {
