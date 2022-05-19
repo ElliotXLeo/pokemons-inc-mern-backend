@@ -1,10 +1,26 @@
+import { uploadFile } from "../config/cloudinary.js";
 import Pokemon from "../models/Pokemon.js";
 
 export const createPokemon = async (req, res) => {
   try {
     const pokemon = new Pokemon(req.body);
+    if (req.files) {
+      const response = await uploadFile(req.files.image.tempFilePath);
+      const { public_id, secure_url } = response;
+      pokemon.image = {
+        publicId: public_id,
+        url: secure_url
+      };
+    } else if (pokemon.image.url) {
+      pokemon.image.publicId = 0;
+    } else {
+      const error = new Error('La imagen es requerida');
+      return res.status(404).json({
+        message: error.message
+      });
+    }
     const createdPokemon = await pokemon.save();
-    res.status(201).json(createdPokemon);
+    return res.status(201).json(createdPokemon);
   } catch (error) {
     return res.status(400).json({
       message: error.message

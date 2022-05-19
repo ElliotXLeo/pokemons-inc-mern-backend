@@ -28,12 +28,12 @@ const pokemonSchema = mongoose.Schema(
       required: true
     },
     image: {
-      url: {
+      publicId: {
         type: String,
         trim: true,
         required: true
       },
-      publicId: {
+      url: {
         type: String,
         trim: true,
         required: true
