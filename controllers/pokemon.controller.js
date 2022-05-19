@@ -1,4 +1,5 @@
 import { uploadFile } from "../config/cloudinary.js";
+import fs from 'fs-extra';
 import Pokemon from "../models/Pokemon.js";
 
 export const createPokemon = async (req, res) => {
@@ -6,6 +7,7 @@ export const createPokemon = async (req, res) => {
     const pokemon = new Pokemon(req.body);
     if (req.files) {
       const response = await uploadFile(req.files.image.tempFilePath);
+      await fs.remove(req.files.image.tempFilePath);
       const { public_id, secure_url } = response;
       pokemon.image = {
         publicId: public_id,
