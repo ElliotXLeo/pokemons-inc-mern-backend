@@ -69,17 +69,30 @@ export const updatePokemon = async (req, res) => {
       return res.status(404).json({
         message: error.message
       });
-    } else {
-      const { name, type, hp, attack, special, image } = req.body;
-      pokemon.name = name || pokemon.name;
-      pokemon.type = type || pokemon.type;
-      pokemon.hp = hp || pokemon.hp;
-      pokemon.attack = attack || pokemon.attack;
-      pokemon.special = special || pokemon.special;
-      pokemon.image = image || pokemon.image;
-      const updatedPokemon = await pokemon.save();
-      return res.status(200).json(updatedPokemon);
+    } else if (req.files) {
+      if (isNaN(+pokemon.image.publicId)) {
+        await deleteFile(pokemon.image.publicId);
+      }
+      const response = await uploadFile(req.files.image.tempFilePath);
+      await fs.remove(req.files.image.tempFilePath);
+      const { public_id, secure_url } = response;
+      pokemon.image = {
+        publicId: public_id,
+        url: secure_url
+      };
+    } else if (pokemon.image.url && req.body.image?.url) {
+      if (pokemon.image.url !== req.body.image.url) {
+        pokemon.image.url = req.body.image.url;
+      }
     }
+    const { name, type, hp, attack, special } = req.body;
+    pokemon.name = name || pokemon.name;
+    pokemon.type = type || pokemon.type;
+    pokemon.hp = hp || pokemon.hp;
+    pokemon.attack = attack || pokemon.attack;
+    pokemon.special = special || pokemon.special;
+    const updatedPokemon = await pokemon.save();
+    return res.status(200).json(updatedPokemon);
   } catch (error) {
     return res.status(400).json({
       message: error.message
@@ -98,8 +111,7 @@ export const deletePokemon = async (req, res) => {
       });
     } else {
       if (isNaN(+pokemon.image.publicId)) {
-        const response = await deleteFile(pokemon.image.publicId);
-        console.log(response);
+        await deleteFile(pokemon.image.publicId);
       }
       await pokemon.deleteOne();
       return res.status(200).json({
