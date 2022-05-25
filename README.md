@@ -5,6 +5,7 @@
 Administrador de Pokémon’s.
 
 ## 🔗 Endpoints 🔗
+### URL: https://pokemon-inc-mern-backend.herokuapp.com/api
 
 ## **pokemons**
 
@@ -44,7 +45,7 @@ Administrador de Pokémon’s.
   "image": image
 ```
 
-> ### **GET** /pokemons *Lee los registro* 
+> ### **GET** /pokemons *Lee los registros* 
 
 > ### **GET** /pokemons/{id} *Lee un registro por su id* 
 
@@ -145,7 +146,7 @@ Administrador de Pokémon’s.
 ## 🤗 Redes sociales 🤗
 - 🐭 YouTube: https://www.youtube.com/channel/UCE9whBrtYnLWrpzwk6z_JUA 🐭
 - 🐭 GitHub: https://github.com/ElliotXLeo 🐭
-- 🐭 Linkedin: https://www.linkedin.com/in/elliotgaramendi/ 🐭
+- 🐭 LinkedIn: https://www.linkedin.com/in/elliotgaramendi/ 🐭
 - 🐭 Instagram: https://www.instagram.com/elliotgaramendi/ 🐭
 - 🐭 Facebook: https://www.facebook.com/elliotgaramendi 🐭
 - 🐭 Portafolio Web: https://elliotxleo.github.io/portafolio-web-elgs/ 🐭
