@@ -1,5 +1,5 @@
 {
-  "name": "pokemon-inc-mern",
+  "name": "pokemons-inc-mern",
   "version": "1.0.0",
   "description": "Administrador de Pokémon’s.",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElliotXLeo/pokemon-inc-mern-backend.git"
+    "url": "git+https://github.com/ElliotXLeo/pokemons-inc-mern-backend.git"
   },
   "keywords": [
     "JavaScript",
@@ -28,9 +28,9 @@
   "author": "Elliot Leo Garamendi Sarmiento",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ElliotXLeo/pokemon-inc-mern-backend/issues"
+    "url": "https://github.com/ElliotXLeo/pokemons-inc-mern-backend/issues"
   },
-  "homepage": "https://github.com/ElliotXLeo/pokemon-inc-mern-backend#readme",
+  "homepage": "https://github.com/ElliotXLeo/pokemons-inc-mern-backend#readme",
   "dependencies": {
     "cloudinary": "^1.30.0",
     "cors": "^2.8.5",

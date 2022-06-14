@@ -10,7 +10,7 @@ cloudinary.config({
 export const uploadFile = async (filePath) => {
   try {
     return await cloudinary.uploader.upload(filePath, {
-      folder: 'pokemon-inc-mern'
+      folder: 'pokemons-inc-mern'
     });
   } catch (error) {
     console.log(error.message);
